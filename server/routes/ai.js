@@ -1,5 +1,5 @@
 import express from 'express';
-import rateLimit from 'express-rate-limit';
+import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
 import { all, get, run, nowIso, getSettings, setSetting } from '../db.js';
 import { requireAuth } from '../auth.js';
 import { HttpError, badRequest, str, int, notFound, forbidden } from '../util.js';
@@ -15,7 +15,7 @@ const chatLimiter = rateLimit({
   limit: 12,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
-  keyGenerator: (req) => (req.user ? `user:${req.user.id}` : req.ip),
+  keyGenerator: (req) => (req.user ? `user:${req.user.id}` : ipKeyGenerator(req.ip || '')),
   message: { error: 'Muitas mensagens em pouco tempo. Aguarde um instante.' },
 });
 
