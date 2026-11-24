@@ -29,6 +29,7 @@ export default function Layout() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
+    document.body.dataset.route = location.pathname;
   }, [location.pathname]);
 
   return (
