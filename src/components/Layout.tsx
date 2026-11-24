@@ -15,8 +15,10 @@ function introSeen(): boolean {
 }
 
 export default function Layout() {
-  const [intro, setIntro] = useState(() => !introSeen());
   const location = useLocation();
+  // A introdução abre automaticamente apenas na página inicial: em páginas de acesso
+  // direto (entrar, criar conta, conteúdos) o usuário interage imediatamente.
+  const [intro, setIntro] = useState(() => !introSeen() && location.pathname === '/');
 
   useEffect(() => {
     const replay = () => setIntro(true);
