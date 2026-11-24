@@ -95,6 +95,17 @@ app.use('/api', (_req, res) => {
 });
 
 if (fs.existsSync(DIST)) {
+  // PWA: manifest com MIME correto e service worker sempre revalidado pelo navegador.
+  app.get('/manifest.webmanifest', (_req, res) => {
+    res.setHeader('Content-Type', 'application/manifest+json; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.sendFile(path.join(DIST, 'manifest.webmanifest'));
+  });
+  app.get('/sw.js', (_req, res) => {
+    res.setHeader('Content-Type', 'text/javascript; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.sendFile(path.join(DIST, 'sw.js'));
+  });
   app.use(
     express.static(DIST, {
       index: false,
