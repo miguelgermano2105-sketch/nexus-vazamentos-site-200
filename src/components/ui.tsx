@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../state/AppContext';
 import type { Post, Role } from '../lib/types';
-import { categoryName, formatDate, initials, numberFmt, postImage, timeAgo } from '../lib/format';
+import { categoryName, formatDate, initials, numberFmt, postImage } from '../lib/format';
 
 /* --------------------------------- Avatar --------------------------------- */
 
@@ -314,4 +314,3 @@ export function SkeletonCards({ count = 6 }: { count?: number }) {
   );
 }
 
-export const inlineStyles: Record<string, CSSProperties> = {};
