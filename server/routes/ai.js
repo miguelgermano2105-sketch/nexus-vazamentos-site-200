@@ -124,12 +124,6 @@ router.post('/conversations/:id/messages', requireAuth, chatLimiter, async (req,
     'SELECT role, content FROM ai_messages WHERE conversation_id = ? ORDER BY id ASC LIMIT 40',
     [id],
   );
-  run('INSERT INTO ai_messages (conversation_id, role, content, created_at) VALUES (?, ?, ?, ?)', [
-    id,
-    'user',
-    content,
-    nowIso(),
-  ]);
 
   const systemPrompt = getSettings().ai_system_prompt || 'Você é a NEXUS AI.';
   const messages = [
@@ -158,15 +152,40 @@ router.post('/conversations/:id/messages', requireAuth, chatLimiter, async (req,
     });
 
     if (!response.ok) {
-      const detail = await response.text().catch(() => '');
-      console.error(`[nexus:ai] provider ${response.status}: ${detail.slice(0, 300)}`);
-      const message =
-        response.status === 401
-          ? 'A chave da API de inteligência artificial foi recusada. Verifique a configuração no servidor.'
-          : response.status === 429
-            ? 'O provedor de inteligência artificial está com limite de uso atingido. Tente novamente em instantes.'
-            : 'O provedor de inteligência artificial retornou um erro. Tente novamente.';
-      throw new HttpError(response.status === 401 ? 503 : 502, message);
+      const raw = await response.text().catch(() => '');
+      console.error(`[nexus:ai] provider ${response.status}: ${raw.slice(0, 300)}`);
+      let code = '';
+      let type = '';
+      try {
+        const parsed = JSON.parse(raw);
+        code = parsed?.error?.code || '';
+        type = parsed?.error?.type || '';
+      } catch {
+        // o provedor pode responder algo que não é JSON
+      }
+      const semCreditos =
+        code === 'credit_balance_exhausted' ||
+        type === 'insufficient_quota' ||
+        /insufficient_quota|credit_balance_exhausted|no credits remaining/i.test(raw);
+      if (semCreditos) {
+        throw new HttpError(
+          503,
+          'A conta do provedor de IA está sem créditos. Adicione créditos em platform.openai.com (Billing) ou configure outro provedor compatível em AI_BASE_URL. Esta mensagem não consumiu o seu limite diário.',
+        );
+      }
+      if (response.status === 401 || code === 'invalid_api_key') {
+        throw new HttpError(503, 'A chave da API de inteligência artificial foi recusada. Verifique a configuração no servidor.');
+      }
+      if (response.status === 404 || code === 'model_not_found') {
+        throw new HttpError(
+          503,
+          'O modelo de IA configurado não está disponível para esta chave. Ajuste a variável AI_MODEL no servidor.',
+        );
+      }
+      if (response.status === 429) {
+        throw new HttpError(429, 'O provedor de IA atingiu o limite de requisições. Tente novamente em instantes.');
+      }
+      throw new HttpError(502, 'O provedor de inteligência artificial retornou um erro. Tente novamente.');
     }
 
     const data = await response.json();
@@ -185,13 +204,18 @@ router.post('/conversations/:id/messages', requireAuth, chatLimiter, async (req,
 
   run('INSERT INTO ai_messages (conversation_id, role, content, created_at) VALUES (?, ?, ?, ?)', [
     id,
+    'user',
+    content,
+    nowIso(),
+  ]);
+  run('INSERT INTO ai_messages (conversation_id, role, content, created_at) VALUES (?, ?, ?, ?)', [
+    id,
     'assistant',
     reply,
     nowIso(),
   ]);
 
-  const messageCount = get('SELECT COUNT(*) AS n FROM ai_messages WHERE conversation_id = ?', [id]).n;
-  if (messageCount <= 2 && (conv.title === 'Nova conversa' || !conv.title)) {
+  if (history.length === 0 && (conv.title === 'Nova conversa' || !conv.title)) {
     const title = content.length > 60 ? `${content.slice(0, 57)}...` : content;
     run('UPDATE ai_conversations SET title = ? WHERE id = ?', [title, id]);
   }
