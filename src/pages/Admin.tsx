@@ -40,7 +40,7 @@ function errMsg(err: unknown, fallback: string) {
 }
 
 export default function Admin() {
-  const { user, isAdmin, toast } = useApp();
+  const { user, isAdmin } = useApp();
   const [params, setParams] = useSearchParams();
   const initial = (params.get('tab') as TabKey) || 'dashboard';
   const [tab, setTab] = useState<TabKey>(TABS.some((t) => t.key === initial) ? initial : 'dashboard');
@@ -164,7 +164,7 @@ function DashboardTab() {
           <div style={{ display: 'grid', gap: 8, marginTop: 12 }}>
             {data.recentUsers.map((u) => (
               <div key={u.id} className="list-row">
-                <Avatar name={u.display_name} size={30} />
+                <Avatar name={u.display_name} size="sm" />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="t">{u.display_name}</div>
                   <div className="s">@{u.username}</div>
@@ -296,7 +296,7 @@ function UsersTab() {
                 <tr key={u.id}>
                   <td>
                     <div className="row" style={{ gap: 9 }}>
-                      <Avatar name={u.display_name} size={28} />
+                      <Avatar name={u.display_name} size="xs" />
                       <div>
                         <div className="small">{u.display_name}</div>
                         <div className="tiny text-muted">@{u.username}</div>
@@ -508,7 +508,7 @@ function PostsTab() {
                   <td>
                     <div className="row" style={{ gap: 10 }}>
                       <img
-                        src={postImage(p)}
+                        src={postImage(p) || ''}
                         alt=""
                         style={{ width: 42, height: 42, borderRadius: 8, objectFit: 'cover' }}
                       />
@@ -1085,7 +1085,7 @@ function CommunityTab() {
             {data.online.length ? (
               data.online.map((m) => (
                 <div key={m.id} className="list-row">
-                  <Avatar name={m.name || m.displayName || m.username} src={m.avatar} size={26} />
+                  <Avatar name={m.name || m.displayName || m.username} src={m.avatar} size="xs" />
                   <span className="small" style={{ flex: 1 }}>{m.name || m.displayName || m.username}</span>
                   <RoleBadge role={m.role} />
                   <button

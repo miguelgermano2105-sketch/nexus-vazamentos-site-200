@@ -10,7 +10,7 @@ export default function Info() {
       <div className="container container-narrow">
         <div className="eyebrow"><span className="dot" /> Informações</div>
         <h1 className="section-title">Sobre a plataforma</h1>
-        <p className="section-sub">{settings.siteDescription}</p>
+        <p className="section-sub">{settings.description}</p>
 
         <div className="glass-panel card-pad stack" style={{ marginTop: 26 }}>
           <h2 className="card-title" style={{ fontSize: 20 }}>O que é o NEXUS VAZAMENTOS</h2>
@@ -46,7 +46,7 @@ export default function Info() {
           <div className="divider" />
 
           <h2 className="card-title" style={{ fontSize: 20 }}>Regras de convivência</h2>
-          <div className="small text-muted" style={{ whiteSpace: 'pre-wrap' }}>{settings.communityRules}</div>
+          <div className="small text-muted" style={{ whiteSpace: 'pre-wrap' }}>{settings.rules}</div>
         </div>
 
         <div className="row between" style={{ marginTop: 22 }}>

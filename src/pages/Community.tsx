@@ -188,7 +188,7 @@ export default function Community() {
         <div className="community-layout">
           <div className="chat-panel glass-panel">
             <div className="chat-head">
-              <Avatar name={user?.displayName || 'Visitante'} src={user?.avatar} size={34} />
+              <Avatar name={user?.displayName || 'Visitante'} src={user?.avatar} size="md" />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <strong className="small">Chat público</strong>
                 <p className="tiny text-muted">
@@ -210,7 +210,7 @@ export default function Community() {
                   const own = user?.id === m.author.id;
                   return (
                     <div key={m.id} className={`chat-msg${own ? ' own' : ''}`}>
-                      <Avatar name={m.author.name || m.author.username} src={m.author.avatar} size={32} />
+                      <Avatar name={m.author.name || m.author.username} src={m.author.avatar} size="sm" />
                       <div className="chat-bubble-wrap">
                         <div className="chat-author">
                           <span>{m.author.name || m.author.username}</span>
@@ -321,7 +321,7 @@ export default function Community() {
               {online.length ? (
                 online.map((m) => (
                   <div key={m.id} className="member-item">
-                    <Avatar name={m.name || m.displayName || m.username} src={m.avatar} size={28} />
+                    <Avatar name={m.name || m.displayName || m.username} src={m.avatar} size="xs" />
                     <span className="nm" style={{ flex: 1 }}>{m.name || m.displayName || m.username}</span>
                     {user && user.id !== m.id ? (
                       <button

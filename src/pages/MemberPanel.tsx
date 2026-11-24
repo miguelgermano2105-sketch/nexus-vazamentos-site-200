@@ -100,7 +100,7 @@ export default function MemberPanel() {
                 ))}
               </div>
             ) : (
-              <EmptyState title="Nenhum favorito ainda" message="Favorite conteúdos para encontrá-los rapidamente aqui." />
+              <EmptyState title="Nenhum favorito ainda" description="Favorite conteúdos para encontrá-los rapidamente aqui." />
             )}
 
             <div className="row between" style={{ marginTop: 10 }}>

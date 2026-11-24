@@ -4,7 +4,7 @@ import { contentApi } from '../lib/api';
 import type { HomeData } from '../lib/types';
 import { useApp } from '../state/AppContext';
 import { DiscordButton } from '../components/Footer';
-import { EmptyState, LevelBadge, LoadingBlock, PostCard, Reveal, SkeletonCards } from '../components/ui';
+import { EmptyState, LevelBadge, PostCard, Reveal, SkeletonCards } from '../components/ui';
 import { formatDate, numberFmt } from '../lib/format';
 
 export default function Home() {
