@@ -435,6 +435,26 @@ router.post('/ai/test', adminOnly, async (req, res) => {
     const raw = await response.text().catch(() => '');
 
     if (!response.ok) {
+      let code = '';
+      let type = '';
+      try {
+        const parsed = JSON.parse(raw);
+        code = parsed?.error?.code || '';
+        type = parsed?.error?.type || '';
+      } catch {
+        // o provedor pode responder algo que não é JSON
+      }
+      const semCreditos =
+        code === 'credit_balance_exhausted' ||
+        type === 'insufficient_quota' ||
+        /insufficient_quota|credit_balance_exhausted|no credits remaining/i.test(raw);
+      if (semCreditos) {
+        logAdmin(req.user.id, 'ai.test.failed', 'ai', null, 'sem_creditos');
+        throw new HttpError(
+          400,
+          'A chave é válida, mas a conta do provedor está sem créditos. Adicione créditos em platform.openai.com (Billing) ou use outro provedor compatível em AI_BASE_URL.',
+        );
+      }
       const hints = {
         401: 'A chave foi recusada pelo provedor. Confira o valor de OPENAI_API_KEY.',
         403: 'A chave não tem permissão para usar este modelo ou endpoint.',

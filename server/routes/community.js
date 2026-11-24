@@ -1,5 +1,5 @@
 import express from 'express';
-import rateLimit from 'express-rate-limit';
+import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
 import { all, get, run, nowIso, getSettings } from '../db.js';
 import {
   requireAuth,
@@ -20,7 +20,7 @@ const sendLimiter = rateLimit({
   limit: 20,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
-  keyGenerator: (req) => (req.user ? `user:${req.user.id}` : req.ip),
+  keyGenerator: (req) => (req.user ? `user:${req.user.id}` : ipKeyGenerator(req.ip || '')),
   message: { error: 'Você está enviando mensagens rápido demais. Aguarde um instante.' },
 });
 
