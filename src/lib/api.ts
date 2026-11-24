@@ -148,6 +148,11 @@ export const communityApi = {
 
 export const adminApi = {
   dashboard: () => get<DashboardData>('/admin/dashboard'),
+  aiTest: () =>
+    post<{ ok: boolean; model: string; provider: string; latencyMs: number; sample?: string }>(
+      '/admin/ai/test',
+      {},
+    ),
   users: (params: Record<string, string | number | undefined>) => {
     const qs = new URLSearchParams();
     Object.entries(params).forEach(([k, v]) => {

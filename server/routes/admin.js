@@ -401,6 +401,75 @@ router.put('/settings', adminOnly, (req, res) => {
   res.json({ ok: true, applied });
 });
 
+/**
+ * Diagnóstico da integração de IA: confirma chave, endpoint e modelo ativos.
+ * Nunca devolve a chave; apenas o host do provedor e o resultado real da chamada.
+ */
+router.post('/ai/test', adminOnly, async (req, res) => {
+  const key = process.env.AI_API_KEY || process.env.OPENAI_API_KEY || '';
+  if (!key) {
+    throw badRequest(
+      'Nenhuma chave de IA configurada. Defina OPENAI_API_KEY (ou AI_API_KEY) nas variáveis de ambiente do servidor e publique novamente.',
+    );
+  }
+
+  const base = (process.env.AI_BASE_URL || 'https://api.openai.com/v1').replace(/\/$/, '');
+  const settings = getSettings();
+  const model = process.env.AI_MODEL || settings.ai_model || 'gpt-4o-mini';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 20_000);
+  const startedAt = Date.now();
+
+  try {
+    const response = await fetch(`${base}/chat/completions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: 'user', content: 'Responda apenas: ok' }],
+        max_tokens: 8,
+        temperature: 0,
+      }),
+      signal: controller.signal,
+    });
+    const raw = await response.text().catch(() => '');
+
+    if (!response.ok) {
+      const hints = {
+        401: 'A chave foi recusada pelo provedor. Confira o valor de OPENAI_API_KEY.',
+        403: 'A chave não tem permissão para usar este modelo ou endpoint.',
+        404: 'Modelo ou endpoint não encontrado. Verifique AI_MODEL e AI_BASE_URL.',
+        429: 'Limite de uso ou créditos do provedor esgotados. Verifique o plano da conta de IA.',
+      };
+      logAdmin(req.user.id, 'ai.test.failed', 'ai', null, `status=${response.status}`);
+      throw new HttpError(
+        400,
+        hints[response.status] || `O provedor de IA respondeu ${response.status}. ${raw.slice(0, 160)}`,
+      );
+    }
+
+    const data = JSON.parse(raw || '{}');
+    const sample = String(data?.choices?.[0]?.message?.content || '').trim();
+    logAdmin(req.user.id, 'ai.test.ok', 'ai', null, `model=${model}`);
+    res.json({
+      ok: true,
+      model,
+      provider: new URL(base).host,
+      latencyMs: Date.now() - startedAt,
+      sample: sample.slice(0, 160),
+    });
+  } catch (err) {
+    if (err instanceof HttpError) throw err;
+    if (err.name === 'AbortError') {
+      throw new HttpError(504, 'O provedor de IA demorou demais para responder. Tente novamente.');
+    }
+    logAdmin(req.user.id, 'ai.test.failed', 'ai', null, `erro=${err.message}`);
+    throw new HttpError(502, `Não foi possível contatar o provedor de IA: ${err.message}`);
+  } finally {
+    clearTimeout(timer);
+  }
+});
+
 /* ------------------------------ Moderação/logs ---------------------------- */
 
 router.get('/reports', (req, res) => {
