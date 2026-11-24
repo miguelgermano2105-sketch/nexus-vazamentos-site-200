@@ -347,12 +347,12 @@ if (!get('SELECT id FROM categories LIMIT 1')) {
 
 const SEED_POSTS = [
   {
-    title: 'Primeiros passos na 22M',
+    title: 'Primeiros passos na 22m Vazamentos',
     slug: 'primeiros-passos-na-22m',
     category: 'tutoriais',
     featured: 1,
     description: 'Aprenda a configurar seu perfil, salvar favoritos e explorar a biblioteca em poucos minutos.',
-    body: 'A 22M foi construída para ser direta: crie sua conta, escolha um nome de exibição, adicione uma foto e comece a explorar.\n\n1. Abra "Criar conta" e defina e-mail, usuário e senha forte.\n2. No painel do membro, ajuste sua foto e sua bio.\n3. Use a busca da biblioteca para filtrar por categoria e ordenar por recentes ou populares.\n4. Favorite o que quiser rever — seus favoritos e o histórico ficam salvos na sua conta, disponíveis em qualquer dispositivo.\n5. Participe da 22M Community com respeito às regras de convivência.\n\nDica: ative ou desative efeitos visuais em Configurações para deixar a experiência do seu jeito.',
+    body: 'A 22m Vazamentos foi construída para ser direta: crie sua conta, escolha um nome de exibição, adicione uma foto e comece a explorar.\n\n1. Abra "Criar conta" e defina e-mail, usuário e senha forte.\n2. No painel do membro, ajuste sua foto e sua bio.\n3. Use a busca da biblioteca para filtrar por categoria e ordenar por recentes ou populares.\n4. Favorite o que quiser rever — seus favoritos e o histórico ficam salvos na sua conta, disponíveis em qualquer dispositivo.\n5. Participe da 22M Community com respeito às regras de convivência.\n\nDica: ative ou desative efeitos visuais em Configurações para deixar a experiência do seu jeito.',
   },
   {
     title: 'Organizando sua rotina de estudos com a 22M AI',
@@ -468,7 +468,7 @@ const SEED_POSTS = [
     category: 'outros',
     featured: 1,
     description: 'Entenda limites, contexto e as melhores formas de pedir ajuda à inteligência da plataforma.',
-    body: 'A 22M AI é a assistente oficial da plataforma. Ela conversa em português, mantém o contexto da conversa e ajuda com dúvidas sobre a 22M, conteúdo, textos, ideias e explicações técnicas.\n\nComo obter respostas melhores:\n1. Informe objetivo e contexto.\n2. Peça formato de saída (lista, tabela, resumo, passo a passo).\n3. Itere: peça ajustes em vez de recomeçar.\n4. Separe assuntos em conversas diferentes.\n\nLimites: a IA não acessa dados privados de terceiros, não fornece credenciais e não substitui aconselhamento profissional. Cada conta tem um limite diário de mensagens para manter o serviço disponível para todos.',
+    body: 'A 22M AI é a assistente oficial da plataforma. Ela conversa em português, mantém o contexto da conversa e ajuda com dúvidas sobre a plataforma, conteúdo, textos, ideias e explicações técnicas.\n\nComo obter respostas melhores:\n1. Informe objetivo e contexto.\n2. Peça formato de saída (lista, tabela, resumo, passo a passo).\n3. Itere: peça ajustes em vez de recomeçar.\n4. Separe assuntos em conversas diferentes.\n\nLimites: a IA não acessa dados privados de terceiros, não fornece credenciais e não substitui aconselhamento profissional. Cada conta tem um limite diário de mensagens para manter o serviço disponível para todos.',
   },
 ];
 
@@ -513,7 +513,7 @@ if (!get('SELECT id FROM announcements LIMIT 1')) {
     'INSERT INTO announcements (title, body, level, active, author_id, created_at, updated_at) VALUES (?, ?, ?, 1, NULL, ?, ?)',
     [
       'Conteúdo autorizado apenas',
-      'A 22M publica somente materiais próprios, autorizados ou de domínio público. Não divulgamos dados pessoais, credenciais ou arquivos privados de terceiros.',
+      'A 22m Vazamentos publica somente materiais próprios, autorizados ou de domínio público. Não divulgamos dados pessoais, credenciais ou arquivos privados de terceiros.',
       'warning',
       created,
       created,
