@@ -1408,3 +1408,69 @@ html.reduce-motion .hero-orb, html.reduce-motion .hero-ring { animation: none !i
 
 /* Identificadores técnicos (ex.: modelo da IA) preservam a grafia exata da configuração */
 .tiny-case { text-transform: none; letter-spacing: 0.02em; }
+
+/* ---------- Convite para instalar o app (PWA) ---------- */
+.install-app {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(440px, calc(100vw - 28px));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.96), rgba(8, 8, 8, 0.96));
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  backdrop-filter: blur(14px);
+  animation: install-rise 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.install-app__icon {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-family: var(--font-display, 'Sora', sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+}
+.install-app__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.install-app__text strong { font-size: 13.5px; letter-spacing: 0.01em; color: #fff; }
+.install-app__text span { font-size: 11.5px; line-height: 1.35; color: rgba(255, 255, 255, 0.62); }
+.install-app__cta { flex: 0 0 auto; padding: 8px 14px !important; font-size: 12px !important; }
+.install-app__close {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.install-app__close:hover { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+@keyframes install-rise {
+  from { opacity: 0; transform: translate(-50%, 14px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+@media (max-width: 640px) {
+  .install-app { bottom: 92px; padding: 11px 12px; gap: 10px; }
+  .install-app__text strong { font-size: 12.5px; }
+  .install-app__text span { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .install-app { animation: none; }
+}

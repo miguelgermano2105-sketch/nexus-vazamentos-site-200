@@ -5,6 +5,14 @@ import App from './App';
 import { AppProvider } from './state/AppContext';
 import './styles.css';
 
+// O app instalável (PWA) usa service worker: registramos apenas em HTTPS/produção,
+// nunca no servidor de desenvolvimento, para não servir arquivos antigos do Vite.
+if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => undefined);
+  });
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>

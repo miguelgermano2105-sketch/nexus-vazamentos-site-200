@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Effects from './Effects';
 import Intro from './Intro';
 import AiBubble from './AiBubble';
+import InstallApp from './InstallApp';
 import { Toasts } from './ui';
 
 function introSeen(): boolean {
@@ -46,6 +47,7 @@ export default function Layout() {
         <Footer />
       </div>
       <AiBubble />
+      <InstallApp />
       <Toasts />
     </>
   );
