@@ -116,7 +116,7 @@ export default function MemberPanel() {
                 ))}
               </div>
             ) : (
-              <EmptyState title="Histórico vazio" message="Os conteúdos que você abrir aparecem aqui." />
+              <EmptyState title="Histórico vazio" description="Os conteúdos que você abrir aparecem aqui." />
             )}
           </div>
 
@@ -140,7 +140,7 @@ export default function MemberPanel() {
                 ))}
               </div>
             ) : (
-              <EmptyState title="Sem notificações" message="Você receberá avisos da equipe aqui." />
+              <EmptyState title="Sem notificações" description="Você receberá avisos da equipe aqui." />
             )}
 
             <h2 className="section-title" style={{ fontSize: 22, marginTop: 8 }}>Comunicados</h2>
@@ -155,7 +155,7 @@ export default function MemberPanel() {
                 ))}
               </div>
             ) : (
-              <EmptyState title="Nenhum comunicado" message="Avisos oficiais da plataforma aparecerão aqui." />
+              <EmptyState title="Nenhum comunicado" description="Avisos oficiais da plataforma aparecerão aqui." />
             )}
 
             <div className="glass-panel card-pad stack" style={{ gap: 10, marginTop: 8 }}>
