@@ -1342,3 +1342,7 @@ html.reduce-motion .hero-orb, html.reduce-motion .hero-ring { animation: none !i
     .ai-layout .ai-main { height: calc(100vh - 200px); }
   }
 }
+
+/* Introdução: clicar em qualquer ponto pula (não bloqueia a navegação). */
+.intro { cursor: pointer; }
+.intro .intro-skip { cursor: pointer; }

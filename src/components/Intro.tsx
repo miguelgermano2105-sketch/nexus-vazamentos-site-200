@@ -42,7 +42,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
   }, []);
 
   return (
-    <div className={`intro${exiting ? ' exit' : ''}`} aria-label="Introdução NEXUS VAZAMENTOS">
+    <div className={`intro${exiting ? ' exit' : ''}`} aria-label="Introdução NEXUS VAZAMENTOS" onClick={finish}>
       <div className="intro-line" />
       <div className="intro-stage">
         <div className="intro-logo">NEXUS</div>
@@ -51,8 +51,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
       </div>
       <button className="intro-skip" onClick={finish}>
         Pular introdução
-      </button>
-      <div className="intro-progress" />
+      </button>      <div className="intro-progress" />
     </div>
   );
 }
