@@ -205,7 +205,7 @@ export default function AiChat() {
                   }}
                 />
               </div>
-              <p className="tiny text-muted" style={{ marginTop: 8 }}>
+              <p className="tiny tiny-case text-muted" style={{ marginTop: 8 }}>
                 {status?.configured ? `Modelo: ${status.model}` : 'Provedor de IA não configurado'}
               </p>
               {status && !status.configured ? (

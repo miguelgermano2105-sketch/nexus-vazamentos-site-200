@@ -1405,3 +1405,6 @@ html.reduce-motion .hero-orb, html.reduce-motion .hero-ring { animation: none !i
 @media (prefers-reduced-motion: reduce) {
   .card:hover { transform: none; }
 }
+
+/* Identificadores técnicos (ex.: modelo da IA) preservam a grafia exata da configuração */
+.tiny-case { text-transform: none; letter-spacing: 0.02em; }
