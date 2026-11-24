@@ -196,10 +196,14 @@ async function main() {
   const postSlug = post.json?.post?.slug;
 
   const list = await call('GET', '/api/posts');
-  ok('listagem pública de publicações', list.status === 200 && (list.json?.posts?.length ?? 0) >= 1);
+  ok('listagem pública de publicações', list.status === 200 && (list.json?.items?.length ?? 0) >= 1, `status ${list.status}`);
+  ok('paginação informa o total', (list.json?.total ?? 0) >= 1 && (list.json?.totalPages ?? 0) >= 1);
 
   const search = await call('GET', '/api/posts?q=tutorial');
-  ok('pesquisa encontra a publicação', (search.json?.posts?.length ?? 0) >= 1);
+  ok('pesquisa encontra a publicação', (search.json?.items?.length ?? 0) >= 1);
+
+  const emptySearch = await call('GET', '/api/posts?q=zzzznaoexiste');
+  ok('pesquisa sem resultado devolve lista vazia', (emptySearch.json?.items?.length ?? -1) === 0);
 
   const detail = await call('GET', `/api/posts/${postSlug}`);
   ok('detalhe da publicação por slug', detail.status === 200 && detail.json?.post?.body?.length > 0);
@@ -217,7 +221,12 @@ async function main() {
   ok('homepage recebe dados da API', home.status === 200 && Array.isArray(home.json?.featured));
 
   const publicSettings = await call('GET', '/api/settings/public');
-  ok('configurações públicas expõem o Discord', (publicSettings.json?.settings?.discordUrl || '').includes('discord.gg'));
+  ok(
+    'configurações públicas expõem o Discord',
+    (publicSettings.json?.settings?.discord_url || '').includes('discord.gg/YKcYA7g2v'),
+    JSON.stringify(publicSettings.json?.settings ?? {}).slice(0, 120),
+  );
+  ok('configurações públicas não vazam segredos', !/api[_-]?key|secret|password/i.test(JSON.stringify(publicSettings.json ?? {})));
 
   /* ------------------------------ comunidade ------------------------------ */
   const rules = await call('GET', '/api/community/rules');
