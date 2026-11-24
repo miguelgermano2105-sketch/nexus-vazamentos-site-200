@@ -208,6 +208,12 @@ export default function AiChat() {
               <p className="tiny text-muted" style={{ marginTop: 8 }}>
                 {status?.configured ? `Modelo: ${status.model}` : 'Provedor de IA não configurado'}
               </p>
+              {status && !status.configured ? (
+                <p className="tiny text-muted" style={{ marginTop: 6 }}>
+                  Para ativar as respostas, defina <strong>OPENAI_API_KEY</strong> nas variáveis de ambiente do
+                  servidor (Settings → Environment variables). Nenhuma chave fica exposta no navegador.
+                </p>
+              ) : null}
             </div>
           </aside>
 
