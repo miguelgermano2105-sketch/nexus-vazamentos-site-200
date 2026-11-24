@@ -305,6 +305,24 @@ for (const [key, value] of Object.entries(DEFAULT_SETTINGS)) {
   if (!get('SELECT key FROM settings WHERE key = ?', [key])) setSetting(key, value);
 }
 
+/*
+ * Migração de marca: bancos criados antes da troca de nome guardam o nome antigo
+ * nas configurações. Aqui eles passam a refletir a identidade atual.
+ */
+const LEGACY_SITE_NAMES = ['NEXUS VAZAMENTOS', 'Nexus Vazamentos'];
+const legacyName = get('SELECT value FROM settings WHERE key = ?', ['site_name']);
+if (legacyName && LEGACY_SITE_NAMES.includes(legacyName.value)) {
+  setSetting('site_name', DEFAULT_SETTINGS.site_name);
+}
+const legacyLogo = get('SELECT value FROM settings WHERE key = ?', ['logo_text']);
+if (legacyLogo && ['NEXUS', 'Nexus'].includes(legacyLogo.value)) {
+  setSetting('logo_text', DEFAULT_SETTINGS.logo_text);
+}
+const legacyPrompt = get('SELECT value FROM settings WHERE key = ?', ['ai_system_prompt']);
+if (legacyPrompt && /NEXUS/i.test(legacyPrompt.value)) {
+  setSetting('ai_system_prompt', DEFAULT_SETTINGS.ai_system_prompt);
+}
+
 const SEED_CATEGORIES = [
   ['tutoriais', 'Tutoriais', 'Guias passo a passo para dominar ferramentas e processos.', 1],
   ['sites-e-ferramentas', 'Sites e Ferramentas', 'Plataformas e utilitários que aceleram o seu trabalho.', 2],

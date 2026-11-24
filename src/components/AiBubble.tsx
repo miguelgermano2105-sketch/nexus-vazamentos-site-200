@@ -150,7 +150,7 @@ export default function AiBubble() {
                 <h4>Entre para conversar</h4>
                 <p>A 22M AI guarda seu histórico e responde com contexto. Crie sua conta gratuita para começar.</p>
                 <div className="ai-fab-cta-actions">
-                  <Link className="btn btn-primary btn-sm" to="/entrar?next=%2Fnexus-ai">
+                  <Link className="btn btn-primary btn-sm" to="/entrar?next=%2Fia">
                     Entrar
                   </Link>
                   <Link className="btn btn-ghost btn-sm" to="/criar-conta">
