@@ -33,7 +33,7 @@ export default function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link to="/" className="brand" aria-label="22m Vazamentos — início">
-          <span className="brand-mark" aria-hidden>N</span>
+          <span className="brand-mark" aria-hidden>22</span>
           <span className="brand-text">
             <strong>22M</strong>
             <span>VAZAMENTOS</span>

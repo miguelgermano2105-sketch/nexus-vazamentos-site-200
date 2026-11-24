@@ -1346,3 +1346,62 @@ html.reduce-motion .hero-orb, html.reduce-motion .hero-ring { animation: none !i
 /* Introdução: clicar em qualquer ponto pula (não bloqueia a navegação). */
 .intro { cursor: pointer; }
 .intro .intro-skip { cursor: pointer; }
+
+/* =========================================================
+   Refinamento profissional — revisão 86
+   ========================================================= */
+
+.site-header {
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.brand-text strong { letter-spacing: 0.02em; }
+.nav-link { font-weight: 500; }
+.btn { font-weight: 600; letter-spacing: 0.01em; }
+.btn-primary { box-shadow: 0 12px 34px -16px rgba(255, 255, 255, 0.55); }
+.btn-primary:hover { box-shadow: 0 16px 42px -14px rgba(255, 255, 255, 0.7); }
+
+.card {
+  transition:
+    transform 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    background-color 0.35s var(--ease);
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.95);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08); }
+
+.section-title { letter-spacing: -0.028em; }
+.section-title + .section-sub { margin-top: 10px; }
+
+.auth-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.022));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.auth-connected-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 640px) {
+  .auth-connected-row { gap: 12px; }
+  .section { padding: 48px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover { transform: none; }
+}

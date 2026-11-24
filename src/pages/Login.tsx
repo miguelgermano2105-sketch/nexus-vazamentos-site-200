@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ApiError, authApi } from '../lib/api';
 import { useApp } from '../state/AppContext';
-import { ErrorNote } from '../components/ui';
+import { Avatar, ErrorNote } from '../components/ui';
 
 export default function Login() {
-  const { refreshUser, toast } = useApp();
+  const { user, refreshUser, logout, toast } = useApp();
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const next = params.get('next') || '/painel';
@@ -30,6 +30,46 @@ export default function Login() {
       setBusy(false);
     }
   };
+
+  const handleSwitch = async () => {
+    await logout();
+    toast('Sessão encerrada. Agora você pode entrar com outra conta.', 'success');
+  };
+
+  /* Quem já tem sessão não vê o formulário: o site reconhece a conta na hora. */
+  if (user) {
+    return (
+      <section className="section">
+        <div className="container-narrow">
+          <div className="auth-panel auth-connected">
+            <div className="eyebrow"><span className="dot" /> Sessão ativa</div>
+            <div className="auth-connected-row">
+              <Avatar name={user.displayName} src={user.avatar} />
+              <div>
+                <h2 style={{ fontSize: 22 }}>Você já está conectado</h2>
+                <p className="small text-muted">
+                  Conectado como <strong>{user.displayName}</strong> · @{user.username}
+                </p>
+              </div>
+            </div>
+            <p className="small text-muted" style={{ marginTop: 14 }}>
+              Sua sessão fica salva neste navegador por 30 dias e é renovada a cada acesso. Você não precisa
+              entrar novamente.
+            </p>
+            <div className="row gap-10" style={{ marginTop: 20, flexWrap: 'wrap' }}>
+              <Link to={next.startsWith('/') ? next : '/painel'} className="btn btn-primary">
+                Ir para o meu painel
+              </Link>
+              <button className="btn btn-ghost" onClick={handleSwitch} type="button">
+                Entrar com outra conta
+              </button>
+            </div>
+            <p className="signature" style={{ marginTop: 24 }}>DESENVOLVIDO POR SILVA</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section">

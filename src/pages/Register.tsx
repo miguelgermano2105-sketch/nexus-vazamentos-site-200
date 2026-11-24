@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ApiError, authApi } from '../lib/api';
 import { useApp } from '../state/AppContext';
-import { ErrorNote } from '../components/ui';
+import { Avatar, ErrorNote } from '../components/ui';
 
 export default function Register() {
-  const { refreshUser, toast } = useApp();
+  const { user, refreshUser, logout, toast } = useApp();
   const navigate = useNavigate();
 
   const [displayName, setDisplayName] = useState('');
@@ -46,6 +46,43 @@ export default function Register() {
       setBusy(false);
     }
   };
+
+  const handleSwitch = async () => {
+    await logout();
+    toast('Sessão encerrada. Agora você pode criar outra conta.', 'success');
+  };
+
+  /* Já autenticado: evita cadastro duplicado e mostra a conta ativa. */
+  if (user) {
+    return (
+      <section className="section">
+        <div className="container-narrow">
+          <div className="auth-panel auth-connected">
+            <div className="eyebrow"><span className="dot" /> Sessão ativa</div>
+            <div className="auth-connected-row">
+              <Avatar name={user.displayName} src={user.avatar} />
+              <div>
+                <h2 style={{ fontSize: 22 }}>Você já está conectado</h2>
+                <p className="small text-muted">
+                  Conectado como <strong>{user.displayName}</strong> · @{user.username}
+                </p>
+              </div>
+            </div>
+            <p className="small text-muted" style={{ marginTop: 14 }}>
+              Sua conta já está ativa neste navegador. Para criar outra conta, encerre a sessão atual.
+            </p>
+            <div className="row gap-10" style={{ marginTop: 20, flexWrap: 'wrap' }}>
+              <Link to="/painel" className="btn btn-primary">Ir para o meu painel</Link>
+              <button className="btn btn-ghost" onClick={handleSwitch} type="button">
+                Sair e criar outra conta
+              </button>
+            </div>
+            <p className="signature" style={{ marginTop: 24 }}>DESENVOLVIDO POR SILVA</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section">
