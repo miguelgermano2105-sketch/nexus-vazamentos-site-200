@@ -228,7 +228,7 @@ async function main() {
   );
   ok('configurações públicas não vazam segredos', !/api[_-]?key|secret|password/i.test(JSON.stringify(publicSettings.json ?? {})));
 
-  const aiProbe = await call('POST', '/api/admin/ai/test', {});
+  const aiProbe = await call('POST', '/api/admin/ai/test', { session: admin });
   ok(
     'diagnóstico de IA informa ausência de chave',
     aiProbe.status === 400 && /chave/i.test(aiProbe.json?.error || ''),
