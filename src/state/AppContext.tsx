@@ -62,8 +62,29 @@ function readPrefs(): Prefs {
   }
 }
 
+const USER_CACHE = 'nexus_user';
+
+/** Último usuário conhecido: permite abrir o site já reconhecendo a sessão. */
+function readCachedUser(): User | null {
+  try {
+    const raw = localStorage.getItem(USER_CACHE);
+    return raw ? (JSON.parse(raw) as User) : null;
+  } catch {
+    return null;
+  }
+}
+
+function cacheUser(user: User | null) {
+  try {
+    if (user) localStorage.setItem(USER_CACHE, JSON.stringify(user));
+    else localStorage.removeItem(USER_CACHE);
+  } catch {
+    /* armazenamento indisponível */
+  }
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(readCachedUser);
   const [booting, setBooting] = useState(true);
   const [needsAdmin, setNeedsAdmin] = useState(false);
   const [settings, setSettings] = useState(() => normalizeSettings(null));
@@ -96,9 +117,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     try {
       const res = await authApi.me();
       setUser(res.user);
+      cacheUser(res.user);
       return res.user;
     } catch {
       setUser(null);
+      cacheUser(null);
       return null;
     }
   }, []);
@@ -114,6 +137,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         ]);
         if (!alive) return;
         setUser(me.user);
+        cacheUser(me.user);
         setSettings(normalizeSettings(pub.settings));
         setNeedsAdmin(setup.needsAdmin);
         if (me.user) {
@@ -151,6 +175,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const logout = useCallback(async () => {
     await authApi.logout().catch(() => undefined);
     setUser(null);
+    cacheUser(null);
     setFavoriteIds([]);
   }, []);
 

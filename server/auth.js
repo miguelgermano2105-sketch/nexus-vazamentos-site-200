@@ -68,6 +68,12 @@ export function createSession(res, userId, req) {
       String(req.headers['user-agent'] || '').slice(0, 200),
     ],
   );
+  res.append('Set-Cookie', sessionCookie(token, req));
+  return token;
+}
+
+/** Monta o cookie de sessão com validade longa (30 dias, renováveis). */
+function sessionCookie(token, req) {
   const secure = (req.headers['x-forwarded-proto'] || req.protocol || 'http') === 'https';
   const attrs = [
     `${SESSION_COOKIE}=${token}`,
@@ -77,8 +83,7 @@ export function createSession(res, userId, req) {
     `Max-Age=${Math.floor(SESSION_TTL_MS / 1000)}`,
   ];
   if (secure) attrs.push('Secure');
-  res.append('Set-Cookie', attrs.join('; '));
-  return token;
+  return attrs.join('; ');
 }
 
 export function destroySession(req, res) {
@@ -116,18 +121,21 @@ export function findUserById(id) {
 export function resolveUser(req) {
   const token = parseCookies(req)[SESSION_COOKIE];
   if (!token) return null;
-  const session = get('SELECT * FROM sessions WHERE token_hash = ?', [sha256(token)]);
+  const hash = sha256(token);
+  const session = get('SELECT * FROM sessions WHERE token_hash = ?', [hash]);
   if (!session) return null;
-  if (new Date(session.expires_at).getTime() < Date.now()) {
-    run('DELETE FROM sessions WHERE token_hash = ?', [session.token_hash]);
+  const expiresAt = new Date(session.expires_at).getTime();
+  if (expiresAt < Date.now()) {
+    run('DELETE FROM sessions WHERE token_hash = ?', [hash]);
     return null;
   }
   const user = findUserById(session.user_id);
   if (!user || user.status !== 'active') return null;
+  req.session = { token, hash, expiresAt };
   return user;
 }
 
-export function attachUser(req, _res, next) {
+export function attachUser(req, res, next) {
   req.user = resolveUser(req);
   if (req.user) {
     const now = Date.now();
@@ -135,6 +143,18 @@ export function attachUser(req, _res, next) {
       run('UPDATE users SET last_seen_at = ? WHERE id = ?', [nowIso(), req.user.id]);
     }
     touchPresence(req.user.id);
+
+    /*
+     * Renovação deslizante: ao usar o site a sessão é estendida por mais 30 dias,
+     * então quem volta sempre continua conectado. Só expira após 30 dias sem acesso.
+     */
+    if (req.session && req.session.expiresAt - now < SESSION_TTL_MS / 2) {
+      run('UPDATE sessions SET expires_at = ? WHERE token_hash = ?', [
+        new Date(now + SESSION_TTL_MS).toISOString(),
+        req.session.hash,
+      ]);
+      res.append('Set-Cookie', sessionCookie(req.session.token, req));
+    }
   }
   next();
 }
