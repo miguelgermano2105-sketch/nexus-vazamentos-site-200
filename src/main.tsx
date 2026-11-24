@@ -3,7 +3,11 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { AppProvider } from './state/AppContext';
+import { initInstallPrompt } from './lib/install';
 import './styles.css';
+
+// Precisa rodar antes do React montar: o beforeinstallprompt dispara uma única vez.
+initInstallPrompt();
 
 // O app instalável (PWA) usa service worker: registramos apenas em HTTPS/produção,
 // nunca no servidor de desenvolvimento, para não servir arquivos antigos do Vite.

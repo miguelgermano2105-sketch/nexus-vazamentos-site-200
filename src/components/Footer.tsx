@@ -47,6 +47,7 @@ export default function Footer() {
             <Link to="/ia">22M AI</Link>
             <Link to="/comunidade">Comunidade</Link>
             <Link to="/informacoes">Informações</Link>
+            <Link to="/app">Baixar o app</Link>
           </div>
 
           <div className="footer-col">

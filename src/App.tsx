@@ -16,6 +16,7 @@ import ResetPassword from './pages/ResetPassword';
 import Setup from './pages/Setup';
 import Settings from './pages/Settings';
 import Info from './pages/Info';
+import DownloadApp from './pages/DownloadApp';
 import Profile from './pages/Profile';
 import MemberPanel from './pages/MemberPanel';
 import Admin from './pages/Admin';
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="primeiro-acesso" element={<Setup />} />
         <Route path="configuracoes" element={<Settings />} />
         <Route path="informacoes" element={<Info />} />
+        <Route path="app" element={<DownloadApp />} />
         <Route
           path="perfil"
           element={

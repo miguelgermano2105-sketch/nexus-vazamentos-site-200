@@ -1474,3 +1474,100 @@ html.reduce-motion .hero-orb, html.reduce-motion .hero-ring { animation: none !i
 @media (prefers-reduced-motion: reduce) {
   .install-app { animation: none; }
 }
+
+/* ---------- Página de download do app (/app) ---------- */
+.download-hero {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: minmax(0, 210px) minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+}
+.download-hero__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 20px 14px;
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02) 62%),
+    #070707;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  text-align: center;
+}
+.download-hero__icon {
+  width: 74px;
+  height: 74px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  font-weight: 800;
+  font-size: 25px;
+  letter-spacing: -0.02em;
+  box-shadow: 0 0 34px rgba(255, 255, 255, 0.16);
+}
+.download-hero__name { font-size: 13px; font-weight: 700; color: #fff; }
+.download-hero__meta { font-size: 11px; color: rgba(255, 255, 255, 0.55); }
+.download-hero__body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.download-note { margin: 0; font-size: 11.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.55); }
+.download-status { margin: 0; font-size: 13px; }
+.download-status--ok {
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(120, 255, 180, 0.28);
+  background: rgba(120, 255, 180, 0.08);
+  color: #b9ffd8;
+  font-weight: 600;
+}
+.download-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+  gap: 14px;
+}
+.download-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.download-card:hover { border-color: rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.05); }
+.download-card--active {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+.download-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  white-space: nowrap;
+}
+.download-steps { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.download-steps li { font-size: 12.5px; line-height: 1.45; color: rgba(255, 255, 255, 0.72); }
+.download-steps li::marker { color: rgba(255, 255, 255, 0.45); }
+@media (max-width: 640px) {
+  .download-hero { grid-template-columns: 1fr; gap: 16px; }
+  .download-hero__preview {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 14px;
+    text-align: left;
+  }
+  .download-hero__icon { width: 50px; height: 50px; border-radius: 14px; font-size: 18px; }
+  .download-hero__name { font-size: 12.5px; }
+  .download-grid { grid-template-columns: 1fr; }
+}
