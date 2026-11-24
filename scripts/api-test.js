@@ -228,6 +228,13 @@ async function main() {
   );
   ok('configurações públicas não vazam segredos', !/api[_-]?key|secret|password/i.test(JSON.stringify(publicSettings.json ?? {})));
 
+  const aiProbe = await call('POST', '/api/admin/ai/test', {});
+  ok(
+    'diagnóstico de IA informa ausência de chave',
+    aiProbe.status === 400 && /chave/i.test(aiProbe.json?.error || ''),
+    `status ${aiProbe.status}`,
+  );
+
   /* ------------------------------ comunidade ------------------------------ */
   const rules = await call('GET', '/api/community/rules');
   ok('regras da comunidade visíveis', rules.status === 200 && typeof rules.json?.rules === 'string');

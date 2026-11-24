@@ -1188,6 +1188,8 @@ function SettingsTab({ isAdmin }: { isAdmin: boolean }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [aiConfigured, setAiConfigured] = useState(false);
+  const [testingAi, setTestingAi] = useState(false);
+  const [aiTestResult, setAiTestResult] = useState<string | null>(null);
 
   useEffect(() => {
     adminApi
@@ -1224,6 +1226,22 @@ function SettingsTab({ isAdmin }: { isAdmin: boolean }) {
     }
   };
 
+  const testAi = async () => {
+    setTestingAi(true);
+    setAiTestResult(null);
+    try {
+      const res = await adminApi.aiTest();
+      setAiTestResult(`Conexão OK — ${res.provider} · ${res.model} · ${res.latencyMs} ms`);
+      toast('Conexão com o provedor de IA funcionando.', 'success');
+    } catch (err) {
+      const message = errMsg(err, 'Não foi possível testar a conexão com a IA.');
+      setAiTestResult(message);
+      toast(message, 'error');
+    } finally {
+      setTestingAi(false);
+    }
+  };
+
   return (
     <div style={{ display: 'grid', gap: 16 }}>
       <div className="glass-panel" style={{ padding: 18 }}>
@@ -1241,6 +1259,12 @@ function SettingsTab({ isAdmin }: { isAdmin: boolean }) {
         <p className="tiny text-muted" style={{ marginTop: 10 }}>
           A chave nunca é exposta ao navegador: todas as chamadas passam pelo backend com limites por membro.
         </p>
+        <div className="row" style={{ gap: 12, marginTop: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+          <button className="btn btn-ghost" type="button" onClick={testAi} disabled={testingAi || !aiConfigured}>
+            {testingAi ? 'Testando…' : 'Testar conexão'}
+          </button>
+          {aiTestResult ? <span className="tiny text-muted">{aiTestResult}</span> : null}
+        </div>
       </div>
 
       <div className="glass-panel" style={{ padding: 18, display: 'grid', gap: 14 }}>
