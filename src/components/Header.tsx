@@ -7,7 +7,7 @@ import { cn } from '../lib/format';
 const NAV = [
   { to: '/', label: 'Início', end: true },
   { to: '/conteudos', label: 'Conteúdos' },
-  { to: '/nexus-ai', label: 'NEXUS AI' },
+  { to: '/ia', label: '22M AI' },
   { to: '/comunidade', label: 'Comunidade' },
 ];
 
@@ -32,10 +32,10 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link to="/" className="brand" aria-label="NEXUS VAZAMENTOS — início">
+        <Link to="/" className="brand" aria-label="22m Vazamentos — início">
           <span className="brand-mark" aria-hidden>N</span>
           <span className="brand-text">
-            <strong>NEXUS</strong>
+            <strong>22M</strong>
             <span>VAZAMENTOS</span>
           </span>
         </Link>

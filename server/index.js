@@ -76,7 +76,7 @@ app.get('/api/health', (_req, res) => {
   const settings = getSettings();
   res.json({
     ok: true,
-    app: 'NEXUS VAZAMENTOS',
+    app: '22m Vazamentos',
     signature: 'DESENVOLVIDO POR SILVA',
     siteName: settings.site_name,
     aiConfigured: Boolean(process.env.AI_API_KEY || process.env.OPENAI_API_KEY),
@@ -118,7 +118,7 @@ if (fs.existsSync(DIST)) {
       .status(503)
       .type('html')
       .send(
-        '<h1 style="font-family:system-ui;padding:40px">NEXUS VAZAMENTOS</h1><p style="font-family:system-ui;padding:0 40px">Build do frontend não encontrado. Execute <code>npm run build</code>.</p>',
+        '<h1 style="font-family:system-ui;padding:40px">22m Vazamentos</h1><p style="font-family:system-ui;padding:0 40px">Build do frontend não encontrado. Execute <code>npm run build</code>.</p>',
       );
   });
 }
@@ -160,6 +160,6 @@ setInterval(cleanupSessions, 1000 * 60 * 60).unref?.();
 startHeartbeat();
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`NEXUS VAZAMENTOS — servidor em http://0.0.0.0:${PORT}`);
+  console.log(`22m Vazamentos — servidor em http://0.0.0.0:${PORT}`);
   console.log('DESENVOLVIDO POR SILVA');
 });

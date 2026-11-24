@@ -42,10 +42,10 @@ export default function Intro({ onDone }: { onDone: () => void }) {
   }, []);
 
   return (
-    <div className={`intro${exiting ? ' exit' : ''}`} aria-label="Introdução NEXUS VAZAMENTOS" onClick={finish}>
+    <div className={`intro${exiting ? ' exit' : ''}`} aria-label="Introdução 22m Vazamentos" onClick={finish}>
       <div className="intro-line" />
       <div className="intro-stage">
-        <div className="intro-logo">NEXUS</div>
+        <div className="intro-logo">22M</div>
         <div className="intro-sub">VAZAMENTOS</div>
         <div className="intro-sig">Desenvolvido por Silva</div>
       </div>

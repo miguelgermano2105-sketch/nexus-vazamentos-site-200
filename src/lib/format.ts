@@ -73,10 +73,10 @@ export function numberFmt(n?: number): string {
 export function normalizeSettings(raw: Record<string, string> | undefined | null) {
   const s = raw || {};
   return {
-    siteName: s.site_name || s.siteName || 'NEXUS VAZAMENTOS',
+    siteName: s.site_name || s.siteName || '22m Vazamentos',
     description: s.site_description || s.siteDescription || '',
     tagline: s.site_tagline || s.siteTagline || '',
-    logoText: s.logo_text || s.logoText || 'NEXUS',
+    logoText: s.logo_text || s.logoText || '22M',
     discordUrl: s.discord_url || s.discordUrl || 'https://discord.gg/YKcYA7g2v',
     communityEnabled: (s.community_enabled ?? s.communityEnabled ?? '1') !== '0',
     aiEnabled: (s.ai_enabled ?? s.aiEnabled ?? '1') !== '0',

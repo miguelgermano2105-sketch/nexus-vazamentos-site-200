@@ -38,7 +38,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="conteudos" element={<Library />} />
         <Route path="conteudos/:slug" element={<PostDetail />} />
-        <Route path="nexus-ai" element={<AiChat />} />
+        <Route path="ia" element={<AiChat />} />
         <Route path="comunidade" element={<Community />} />
         <Route path="entrar" element={<Login />} />
         <Route path="criar-conta" element={<Register />} />

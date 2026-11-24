@@ -13,10 +13,10 @@ export default function Info() {
         <p className="section-sub">{settings.description}</p>
 
         <div className="glass-panel card-pad stack" style={{ marginTop: 26 }}>
-          <h2 className="card-title" style={{ fontSize: 20 }}>O que é o NEXUS VAZAMENTOS</h2>
+          <h2 className="card-title" style={{ fontSize: 20 }}>O que é o 22m Vazamentos</h2>
           <p className="small text-muted">
-            O NEXUS VAZAMENTOS é uma plataforma digital premium que reúne conteúdos organizados por categoria,
-            uma inteligência artificial própria — a NEXUS AI — e a NEXUS COMMUNITY, um chat público em tempo real
+            O 22m Vazamentos é uma plataforma digital premium que reúne conteúdos organizados por categoria,
+            uma inteligência artificial própria — a 22M AI — e a 22M COMMUNITY, um chat público em tempo real
             para membros da comunidade.
           </p>
           <p className="small text-muted">
@@ -38,7 +38,7 @@ export default function Info() {
 
           <h2 className="card-title" style={{ fontSize: 20 }}>Comunidade oficial</h2>
           <p className="small text-muted">
-            Faça parte da comunidade oficial do NEXUS VAZAMENTOS, acompanhe novidades, atualizações e
+            Faça parte da comunidade oficial do 22m Vazamentos, acompanhe novidades, atualizações e
             comunicados da plataforma.
           </p>
           <div><DiscordButton /></div>

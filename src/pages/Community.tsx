@@ -164,7 +164,7 @@ export default function Community() {
     }
   };
 
-  if (loading) return <LoadingBlock label="Conectando à NEXUS Community…" />;
+  if (loading) return <LoadingBlock label="Conectando à 22M Community…" />;
 
   return (
     <section className="section" style={{ paddingTop: 18 }}>
@@ -172,7 +172,7 @@ export default function Community() {
         <div className="section-head" style={{ marginBottom: 18 }}>
           <div>
             <div className="eyebrow"><span className="dot" /> Comunidade oficial</div>
-            <h1 className="section-title">NEXUS COMMUNITY</h1>
+            <h1 className="section-title">22M COMMUNITY</h1>
             <p className="section-desc">
               Converse com outros membros em tempo real. {online.length ? `${online.length} pessoa(s) online agora.` : 'Seja o primeiro a entrar.'}
             </p>

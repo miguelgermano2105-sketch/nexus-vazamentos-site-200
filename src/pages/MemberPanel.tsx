@@ -161,7 +161,7 @@ export default function MemberPanel() {
             <div className="glass-panel card-pad stack" style={{ gap: 10, marginTop: 8 }}>
               <h3 className="card-title" style={{ fontSize: 16 }}>Atalhos</h3>
               <div className="row wrap" style={{ gap: 8 }}>
-                <Link to="/nexus-ai" className="btn btn-ghost btn-sm">NEXUS AI</Link>
+                <Link to="/ia" className="btn btn-ghost btn-sm">22M AI</Link>
                 <Link to="/comunidade" className="btn btn-ghost btn-sm">Comunidade</Link>
                 <Link to="/configuracoes" className="btn btn-ghost btn-sm">Configurações</Link>
                 {isStaff ? <Link to="/moderacao" className="btn btn-ghost btn-sm">Moderação</Link> : null}

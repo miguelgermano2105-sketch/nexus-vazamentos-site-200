@@ -7,15 +7,15 @@ import type { AiStatus } from '../lib/types';
 type Turn = { role: 'user' | 'assistant'; content: string };
 
 const SUGGESTIONS = [
-  'Como funciona a NEXUS VAZAMENTOS?',
+  'Como funciona a 22m Vazamentos?',
   'Onde encontro tutoriais?',
   'Me ajude a escrever um texto profissional',
-  'O que é a NEXUS Community?',
+  'O que é a 22M Community?',
 ];
 
 /** Rotas onde a bolinha não aparece (página cheia da IA, admin e acesso). */
 function hiddenHere(path: string): boolean {
-  if (path === '/nexus-ai') return true;
+  if (path === '/ia') return true;
   if (path.startsWith('/admin')) return true;
   return ['/entrar', '/criar-conta', '/recuperar-senha', '/redefinir-senha', '/primeiro-acesso'].includes(path);
 }
@@ -44,7 +44,7 @@ export default function AiBubble() {
         if (alive) setStatus(s);
       })
       .catch((e) => {
-        if (alive) setStatusError(e instanceof ApiError ? e.message : 'Não foi possível consultar a NEXUS AI.');
+        if (alive) setStatusError(e instanceof ApiError ? e.message : 'Não foi possível consultar a 22M AI.');
       });
     return () => {
       alive = false;
@@ -96,7 +96,7 @@ export default function AiBubble() {
       setTurns((prev) => [...prev, { role: 'assistant', content: res.reply }]);
       setStatus((s) => (s ? { ...s, used: s.dailyLimit - res.remaining, remaining: res.remaining } : s));
     } catch (e) {
-      setError(e instanceof ApiError ? e.message : 'Falha ao falar com a NEXUS AI. Tente novamente.');
+      setError(e instanceof ApiError ? e.message : 'Falha ao falar com a 22M AI. Tente novamente.');
     } finally {
       setSending(false);
     }
@@ -107,13 +107,13 @@ export default function AiBubble() {
   return (
     <div className="ai-fab-root">
       {open ? (
-        <div className="ai-fab-panel" role="dialog" aria-label="NEXUS AI">
+        <div className="ai-fab-panel" role="dialog" aria-label="22M AI">
           <div className="ai-fab-head">
             <span className="ai-fab-mark" aria-hidden="true">
               N
             </span>
             <div className="ai-fab-title">
-              <strong>NEXUS AI</strong>
+              <strong>22M AI</strong>
               <span>{blocked ? 'Integração pendente' : 'Assistente oficial da plataforma'}</span>
             </div>
             <div className="ai-fab-head-actions">
@@ -132,7 +132,7 @@ export default function AiBubble() {
                   +
                 </button>
               ) : null}
-              <Link className="ai-fab-icon-btn" to="/nexus-ai" title="Abrir em página cheia" aria-label="Abrir em página cheia">
+              <Link className="ai-fab-icon-btn" to="/ia" title="Abrir em página cheia" aria-label="Abrir em página cheia">
                 ⤢
               </Link>
               <button type="button" className="ai-fab-icon-btn" title="Fechar" aria-label="Fechar" onClick={() => setOpen(false)}>
@@ -148,7 +148,7 @@ export default function AiBubble() {
                   ✦
                 </span>
                 <h4>Entre para conversar</h4>
-                <p>A NEXUS AI guarda seu histórico e responde com contexto. Crie sua conta gratuita para começar.</p>
+                <p>A 22M AI guarda seu histórico e responde com contexto. Crie sua conta gratuita para começar.</p>
                 <div className="ai-fab-cta-actions">
                   <Link className="btn btn-primary btn-sm" to="/entrar?next=%2Fnexus-ai">
                     Entrar
@@ -170,7 +170,7 @@ export default function AiBubble() {
                 <h4>IA aguardando configuração</h4>
                 <p>A chave do provedor de IA ainda não foi configurada. Assim que for ativada, eu passo a responder aqui mesmo.</p>
                 <div className="ai-fab-cta-actions">
-                  <Link className="btn btn-primary btn-sm" to="/nexus-ai">
+                  <Link className="btn btn-primary btn-sm" to="/ia">
                     Ver detalhes
                   </Link>
                 </div>
@@ -183,7 +183,7 @@ export default function AiBubble() {
                   N
                 </span>
                 <h4>Olá{user.displayName ? `, ${user.displayName.split(' ')[0]}` : ''}.</h4>
-                <p>Sou a NEXUS AI. Posso explicar a plataforma, encontrar conteúdos e ajudar com textos.</p>
+                <p>Sou a 22M AI. Posso explicar a plataforma, encontrar conteúdos e ajudar com textos.</p>
                 <div className="ai-fab-suggest">
                   {SUGGESTIONS.map((s) => (
                     <button key={s} type="button" className="ai-fab-chip" onClick={() => void send(s)}>
@@ -201,7 +201,7 @@ export default function AiBubble() {
             ))}
 
             {sending ? (
-              <div className="ai-fab-msg assistant ai-fab-typing" aria-label="NEXUS AI está digitando">
+              <div className="ai-fab-msg assistant ai-fab-typing" aria-label="22M AI está digitando">
                 <span />
                 <span />
                 <span />
@@ -248,7 +248,7 @@ export default function AiBubble() {
       <button
         type="button"
         className={`ai-fab ${open ? 'is-open' : ''}`}
-        aria-label={open ? 'Fechar NEXUS AI' : 'Abrir NEXUS AI'}
+        aria-label={open ? 'Fechar 22M AI' : 'Abrir 22M AI'}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >

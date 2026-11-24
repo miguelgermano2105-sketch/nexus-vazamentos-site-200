@@ -11,7 +11,7 @@ export default function NotFound() {
           <Link to="/" className="btn btn-primary">Voltar ao início</Link>
           <Link to="/conteudos" className="btn btn-ghost">Explorar conteúdos</Link>
         </div>
-        <p className="signature" style={{ marginTop: 40 }}>NEXUS VAZAMENTOS — DESENVOLVIDO POR SILVA</p>
+        <p className="signature" style={{ marginTop: 40 }}>22m Vazamentos — DESENVOLVIDO POR SILVA</p>
       </div>
     </section>
   );

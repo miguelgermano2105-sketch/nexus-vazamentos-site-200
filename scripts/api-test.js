@@ -1,5 +1,5 @@
 /**
- * NEXUS VAZAMENTOS — teste de integração ponta a ponta.
+ * 22m Vazamentos — teste de integração ponta a ponta.
  * Sobe o servidor real em uma porta isolada e um banco temporário,
  * exercitando os fluxos críticos da plataforma. DESENVOLVIDO POR SILVA.
  */
@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const PORT = 3411;
 const BASE = `http://127.0.0.1:${PORT}`;
-const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'nexus-test-'));
+const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), '22m-test-'));
 
 let passed = 0;
 const failures = [];
@@ -108,7 +108,7 @@ async function main() {
   if (!up) return;
 
   const health = await call('GET', '/api/health');
-  ok('health identifica a plataforma', health.json?.app === 'NEXUS VAZAMENTOS');
+  ok('health identifica a plataforma', health.json?.app === '22m Vazamentos');
   ok('health expõe a assinatura oficial', health.json?.signature === 'DESENVOLVIDO POR SILVA');
   ok('IA marcada como não configurada sem chave', health.json?.aiConfigured === false);
 
@@ -119,13 +119,13 @@ async function main() {
 
   const claim = await call('POST', '/api/auth/claim-admin', {
     session: admin,
-    body: { email: 'silva@nexus.test', username: 'silva', password: 'SenhaMuitoForte123', displayName: 'SILVA' },
+    body: { email: 'silva@22m.test', username: 'silva', password: 'SenhaMuitoForte123', displayName: 'SILVA' },
   });
   ok('criação do administrador inicial', claim.status === 201 && claim.json?.user?.role === 'admin', `status ${claim.status}`);
   ok('sessão do administrador é criada por cookie', admin.cookie.startsWith('nexus'), admin.cookie.slice(0, 40));
 
   const secondClaim = await call('POST', '/api/auth/claim-admin', {
-    body: { email: 'outro@nexus.test', username: 'outro', password: 'OutraSenhaForte123' },
+    body: { email: 'outro@22m.test', username: 'outro', password: 'OutraSenhaForte123' },
   });
   ok('segundo claim-admin é recusado', secondClaim.status === 409, `status ${secondClaim.status}`);
 
@@ -133,12 +133,12 @@ async function main() {
   const member = jar();
   const register = await call('POST', '/api/auth/register', {
     session: member,
-    body: { email: 'membro@nexus.test', username: 'membro', password: 'MembroForte123', displayName: 'Membro Teste' },
+    body: { email: 'membro@22m.test', username: 'membro', password: 'MembroForte123', displayName: 'Membro Teste' },
   });
   ok('cadastro de membro', register.status === 201 || register.status === 200, `status ${register.status}`);
 
   const weak = await call('POST', '/api/auth/register', {
-    body: { email: 'fraco@nexus.test', username: 'fraco', password: '123' },
+    body: { email: 'fraco@22m.test', username: 'fraco', password: '123' },
   });
   ok('cadastro rejeita senha fraca', weak.status === 400, `status ${weak.status}`);
 
@@ -182,7 +182,7 @@ async function main() {
   const post = await call('POST', '/api/admin/posts', {
     session: admin,
     body: {
-      title: 'Primeiro tutorial NEXUS',
+      title: 'Primeiro tutorial 22M',
       description: 'Como usar a plataforma do começo ao fim.',
       body: 'Conteúdo completo do tutorial, com passos detalhados.',
       categoryId,
@@ -279,7 +279,7 @@ async function main() {
   const logs = await call('GET', '/api/admin/logs', { session: admin });
   ok('ações administrativas registradas em log', (logs.json?.logs?.length ?? 0) >= 1);
 
-  /* --------------------------------- NEXUS AI -------------------------------- */
+  /* --------------------------------- 22M AI -------------------------------- */
   const aiStatus = await call('GET', '/api/ai/status', { session: member });
   ok('status da IA acessível ao membro', aiStatus.status === 200 && aiStatus.json?.configured === false);
   ok('limite diário de IA informado', typeof aiStatus.json?.dailyLimit === 'number');
@@ -305,7 +305,7 @@ async function main() {
   ok('exclusão de conversa', deleted.status === 200, `status ${deleted.status}`);
 
   /* ----------------------------- senha e sessão ----------------------------- */
-  const forgot = await call('POST', '/api/auth/forgot-password', { body: { identifier: 'membro@nexus.test' } });
+  const forgot = await call('POST', '/api/auth/forgot-password', { body: { identifier: 'membro@22m.test' } });
   ok('recuperação de senha responde sem vazar dados', forgot.status === 200 && forgot.json?.ok === true);
 
   const change = await call('POST', '/api/auth/change-password', {

@@ -6,9 +6,9 @@ import { ErrorNote, LoadingBlock } from '../components/ui';
 import { formatDateTime, timeAgo } from '../lib/format';
 
 const SUGGESTIONS = [
-  'Como funciona o NEXUS VAZAMENTOS?',
+  'Como funciona o 22m Vazamentos?',
   'Quais categorias de conteúdo existem?',
-  'Como uso a NEXUS Community?',
+  'Como uso a 22M Community?',
   'Me ajude a escrever uma descrição para um tutorial.',
 ];
 
@@ -46,7 +46,7 @@ export default function AiChat() {
           if (alive) setMessages(conv.messages);
         }
       } catch (err) {
-        if (alive) setError(err instanceof ApiError ? err.message : 'Não foi possível carregar a NEXUS AI.');
+        if (alive) setError(err instanceof ApiError ? err.message : 'Não foi possível carregar a 22M AI.');
       } finally {
         if (alive) setLoading(false);
       }
@@ -144,7 +144,7 @@ export default function AiChat() {
       setStatus((s) => (s ? { ...s, used: s.dailyLimit - res.remaining, remaining: res.remaining } : s));
       void loadConversations();
     } catch (err) {
-      const message = err instanceof ApiError ? err.message : 'A NEXUS AI não respondeu. Tente novamente.';
+      const message = err instanceof ApiError ? err.message : 'A 22M AI não respondeu. Tente novamente.';
       setError(message);
       setMessages((m) => m.filter((msg) => msg.id !== optimistic.id));
       setInput(content);
@@ -153,7 +153,7 @@ export default function AiChat() {
     }
   };
 
-  if (loading) return <LoadingBlock label="Iniciando NEXUS AI…" />;
+  if (loading) return <LoadingBlock label="Iniciando 22M AI…" />;
 
   return (
     <section className="section" style={{ paddingTop: 18 }}>
@@ -222,7 +222,7 @@ export default function AiChat() {
               <div className="row" style={{ gap: 10 }}>
                 <span className="ai-orb" aria-hidden />
                 <div>
-                  <strong>NEXUS AI</strong>
+                  <strong>22M AI</strong>
                   <p className="tiny text-muted">Assistente oficial da plataforma</p>
                 </div>
               </div>
@@ -234,7 +234,7 @@ export default function AiChat() {
                 <div className="ai-welcome">
                   <span className="ai-orb lg" aria-hidden />
                   <h1 className="section-title" style={{ fontSize: 'clamp(24px, 4vw, 34px)' }}>
-                    Olá{user ? `, ${user.displayName}` : ''}. Eu sou a NEXUS AI.
+                    Olá{user ? `, ${user.displayName}` : ''}. Eu sou a 22M AI.
                   </h1>
                   <p className="small text-muted" style={{ maxWidth: 520 }}>
                     Posso explicar como usar a plataforma, ajudar a encontrar conteúdos, esclarecer tutoriais,
@@ -281,7 +281,7 @@ export default function AiChat() {
                 <textarea
                   className="textarea"
                   rows={1}
-                  placeholder="Pergunte algo à NEXUS AI…"
+                  placeholder="Pergunte algo à 22M AI…"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => {
@@ -297,7 +297,7 @@ export default function AiChat() {
                 </button>
               </form>
               <p className="tiny text-muted" style={{ marginTop: 8 }}>
-                A NEXUS AI responde via backend seguro. Nenhuma chave de API é exposta ao navegador.
+                A 22M AI responde via backend seguro. Nenhuma chave de API é exposta ao navegador.
               </p>
             </div>
           </main>

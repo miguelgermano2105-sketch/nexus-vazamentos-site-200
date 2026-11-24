@@ -29,7 +29,7 @@ export default function Footer() {
             <Link to="/" className="brand">
               <span className="brand-mark" aria-hidden>N</span>
               <span className="brand-text">
-                <strong>NEXUS</strong>
+                <strong>22M</strong>
                 <span>VAZAMENTOS</span>
               </span>
             </Link>
@@ -44,7 +44,7 @@ export default function Footer() {
             <h5>Plataforma</h5>
             <Link to="/">Início</Link>
             <Link to="/conteudos">Conteúdos</Link>
-            <Link to="/nexus-ai">NEXUS AI</Link>
+            <Link to="/ia">22M AI</Link>
             <Link to="/comunidade">Comunidade</Link>
             <Link to="/informacoes">Informações</Link>
           </div>
@@ -70,14 +70,14 @@ export default function Footer() {
           <div className="footer-col">
             <h5>Comunidade</h5>
             <a href={settings.discordUrl} target="_blank" rel="noopener noreferrer">Servidor do Discord</a>
-            <Link to="/comunidade">Chat NEXUS Community</Link>
+            <Link to="/comunidade">Chat 22M Community</Link>
             <Link to="/informacoes">Regras de convivência</Link>
             <Link to="/informacoes">Política de conteúdo</Link>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} NEXUS VAZAMENTOS. Todos os direitos reservados.</span>
+          <span>© {new Date().getFullYear()} 22m Vazamentos. Todos os direitos reservados.</span>
           <span className="signature">DESENVOLVIDO POR SILVA</span>
           <button
             className="link-btn"

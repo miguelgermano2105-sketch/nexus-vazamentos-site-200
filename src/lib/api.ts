@@ -108,7 +108,7 @@ export const contentApi = {
   reportContent: (postId: number, reason: string) => post<{ ok: true }>('/reports/content', { postId, reason }),
 };
 
-/* --------------------------------- NEXUS AI -------------------------------- */
+/* --------------------------------- 22M AI -------------------------------- */
 
 export const aiApi = {
   status: () => get<AiStatus>('/ai/status'),
@@ -123,7 +123,7 @@ export const aiApi = {
     ),
 };
 
-/* ------------------------------ NEXUS Community ---------------------------- */
+/* ------------------------------ 22M Community ---------------------------- */
 
 export const communityApi = {
   rules: () => get<{ rules: string; enabled: boolean }>('/community/rules'),

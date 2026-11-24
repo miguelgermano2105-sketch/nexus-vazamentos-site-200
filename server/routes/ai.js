@@ -108,11 +108,11 @@ router.post('/conversations/:id/messages', requireAuth, chatLimiter, async (req,
   const content = str(req.body.content, { min: 1, max: 4000, field: 'mensagem' });
   const cfg = limits();
 
-  if (!cfg.enabled) throw new HttpError(503, 'A NEXUS AI está temporariamente desativada pela administração.');
+  if (!cfg.enabled) throw new HttpError(503, 'A 22M AI está temporariamente desativada pela administração.');
   if (!configured()) {
     throw new HttpError(
       503,
-      'A NEXUS AI ainda não está conectada. Um administrador precisa configurar a chave da API de inteligência artificial nas variáveis de ambiente do servidor.',
+      'A 22M AI ainda não está conectada. Um administrador precisa configurar a chave da API de inteligência artificial nas variáveis de ambiente do servidor.',
     );
   }
   const used = dailyUsage(req.user.id);
@@ -125,7 +125,7 @@ router.post('/conversations/:id/messages', requireAuth, chatLimiter, async (req,
     [id],
   );
 
-  const systemPrompt = getSettings().ai_system_prompt || 'Você é a NEXUS AI.';
+  const systemPrompt = getSettings().ai_system_prompt || 'Você é a 22M AI.';
   const messages = [
     { role: 'system', content: systemPrompt },
     ...history.map((m) => ({ role: m.role, content: m.content })),
@@ -190,11 +190,11 @@ router.post('/conversations/:id/messages', requireAuth, chatLimiter, async (req,
 
     const data = await response.json();
     reply = data?.choices?.[0]?.message?.content?.trim() || '';
-    if (!reply) throw new HttpError(502, 'A NEXUS AI retornou uma resposta vazia. Tente reformular a pergunta.');
+    if (!reply) throw new HttpError(502, 'A 22M AI retornou uma resposta vazia. Tente reformular a pergunta.');
   } catch (err) {
     if (err instanceof HttpError) throw err;
     if (err.name === 'AbortError') {
-      throw new HttpError(504, 'A NEXUS AI demorou demais para responder. Tente novamente.');
+      throw new HttpError(504, 'A 22M AI demorou demais para responder. Tente novamente.');
     }
     console.error('[nexus:ai] falha de rede:', err.message);
     throw new HttpError(502, 'Não foi possível contatar o provedor de inteligência artificial agora.');

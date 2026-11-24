@@ -153,7 +153,7 @@ export default function PostDetail() {
         <div className="row between wrap gap-8" style={{ marginTop: 40 }}>
           <div className="row gap-8">
             <Avatar name="SILVA" size="sm" />
-            <span className="small text-muted">Curadoria NEXUS — <span className="signature">Desenvolvido por Silva</span></span>
+            <span className="small text-muted">Curadoria 22M — <span className="signature">Desenvolvido por Silva</span></span>
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ export default function Register() {
         password,
       });
       await refreshUser();
-      toast('Conta criada com sucesso. Bem-vindo ao NEXUS!', 'success');
+      toast('Conta criada com sucesso. Bem-vindo ao 22M!', 'success');
       navigate('/painel', { replace: true });
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Não foi possível criar a conta.');

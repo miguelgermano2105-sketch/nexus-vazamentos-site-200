@@ -36,15 +36,15 @@ export default function Login() {
       <div className="container auth-wrap">
         <div className="auth-art">
           <div className="eyebrow"><span className="dot" /> Área do membro</div>
-          <h1 className="auth-art-title">Bem-vindo ao <span className="text-dim">NEXUS</span></h1>
+          <h1 className="auth-art-title">Bem-vindo ao <span className="text-dim">22M</span></h1>
           <p className="text-muted small" style={{ marginTop: 14, maxWidth: 360 }}>
-            Acesse favoritos, histórico, notificações, histórico da NEXUS AI e a comunidade em tempo real.
+            Acesse favoritos, histórico, notificações, histórico da 22M AI e a comunidade em tempo real.
             Sessão protegida por cookie seguro no servidor.
           </p>
           <div className="divider" />
           <ul className="stack small text-muted" style={{ listStyle: 'none' }}>
             <li>✦ Biblioteca completa com filtros</li>
-            <li>✦ NEXUS AI com histórico salvo</li>
+            <li>✦ 22M AI com histórico salvo</li>
             <li>✦ Chat público com membros online</li>
           </ul>
           <p className="signature" style={{ marginTop: 26 }}>DESENVOLVIDO POR SILVA</p>

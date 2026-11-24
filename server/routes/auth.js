@@ -85,8 +85,8 @@ router.post('/register', authLimiter, (req, res) => {
   createSession(res, lastInsertRowid, req);
   notify(
     lastInsertRowid,
-    'Bem-vindo à NEXUS VAZAMENTOS',
-    'Sua conta está ativa. Explore a biblioteca, converse com a NEXUS AI e participe da NEXUS Community.',
+    'Bem-vindo à 22m Vazamentos',
+    'Sua conta está ativa. Explore a biblioteca, converse com a 22M AI e participe da 22M Community.',
     '/conteudos',
   );
   res.status(201).json({ user: publicUser(get('SELECT * FROM users WHERE id = ?', [lastInsertRowid])) });

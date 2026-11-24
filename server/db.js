@@ -284,11 +284,11 @@ db.exec('PRAGMA foreign_keys = ON;');
 db.exec(SCHEMA);
 
 const DEFAULT_SETTINGS = {
-  site_name: 'NEXUS VAZAMENTOS',
+  site_name: '22m Vazamentos',
   site_description:
     'Plataforma digital premium de conteúdos selecionados, comunidade em tempo real e inteligência artificial própria.',
   site_tagline: 'Conteúdo, comunidade e inteligência em um só lugar.',
-  logo_text: 'NEXUS',
+  logo_text: '22M',
   discord_url: 'https://discord.gg/YKcYA7g2v',
   community_enabled: '1',
   community_rules:
@@ -297,7 +297,7 @@ const DEFAULT_SETTINGS = {
   ai_model: 'gpt-4o-mini',
   ai_daily_limit: '40',
   ai_system_prompt:
-    'Você é a NEXUS AI, assistente oficial da plataforma NEXUS VAZAMENTOS. Responda em português do Brasil, de forma objetiva, educada e profissional. Ajude com dúvidas sobre a plataforma, conteúdos, tutoriais, ideias e textos. Nunca forneça dados pessoais de terceiros, credenciais, senhas vazadas ou material ilegal. Se o pedido for ilegal ou antiético, recuse com educação e ofereça uma alternativa legal.',
+    'Você é a 22M AI, assistente oficial da plataforma 22m Vazamentos. Responda em português do Brasil, de forma objetiva, educada e profissional. Ajude com dúvidas sobre a plataforma, conteúdos, tutoriais, ideias e textos. Nunca forneça dados pessoais de terceiros, credenciais, senhas vazadas ou material ilegal. Se o pedido for ilegal ou antiético, recuse com educação e ofereça uma alternativa legal.',
   effects_default: 'on',
 };
 
@@ -329,20 +329,20 @@ if (!get('SELECT id FROM categories LIMIT 1')) {
 
 const SEED_POSTS = [
   {
-    title: 'Primeiros passos na NEXUS',
-    slug: 'primeiros-passos-na-nexus',
+    title: 'Primeiros passos na 22M',
+    slug: 'primeiros-passos-na-22m',
     category: 'tutoriais',
     featured: 1,
     description: 'Aprenda a configurar seu perfil, salvar favoritos e explorar a biblioteca em poucos minutos.',
-    body: 'A NEXUS foi construída para ser direta: crie sua conta, escolha um nome de exibição, adicione uma foto e comece a explorar.\n\n1. Abra "Criar conta" e defina e-mail, usuário e senha forte.\n2. No painel do membro, ajuste sua foto e sua bio.\n3. Use a busca da biblioteca para filtrar por categoria e ordenar por recentes ou populares.\n4. Favorite o que quiser rever — seus favoritos e o histórico ficam salvos na sua conta, disponíveis em qualquer dispositivo.\n5. Participe da NEXUS Community com respeito às regras de convivência.\n\nDica: ative ou desative efeitos visuais em Configurações para deixar a experiência do seu jeito.',
+    body: 'A 22M foi construída para ser direta: crie sua conta, escolha um nome de exibição, adicione uma foto e comece a explorar.\n\n1. Abra "Criar conta" e defina e-mail, usuário e senha forte.\n2. No painel do membro, ajuste sua foto e sua bio.\n3. Use a busca da biblioteca para filtrar por categoria e ordenar por recentes ou populares.\n4. Favorite o que quiser rever — seus favoritos e o histórico ficam salvos na sua conta, disponíveis em qualquer dispositivo.\n5. Participe da 22M Community com respeito às regras de convivência.\n\nDica: ative ou desative efeitos visuais em Configurações para deixar a experiência do seu jeito.',
   },
   {
-    title: 'Organizando sua rotina de estudos com a NEXUS AI',
-    slug: 'rotina-de-estudos-com-nexus-ai',
+    title: 'Organizando sua rotina de estudos com a 22M AI',
+    slug: 'rotina-de-estudos-com-22m-ai',
     category: 'tutoriais',
     featured: 1,
     description: 'Um método prático para transformar objetivos em um plano de estudos semanal com apoio da IA.',
-    body: 'A NEXUS AI funciona melhor quando você dá contexto. Em vez de perguntar "me ajude a estudar", descreva objetivo, tempo disponível e nível atual.\n\nModelo de pedido:\n"Quero aprender [tema] em [prazo]. Tenho [X horas] por semana e nível [iniciante/intermediário]. Monte um plano semanal com entregas e formas de revisão."\n\nDepois peça ajustes: "reduza para 3 dias por semana", "adicione exercícios práticos", "crie um resumo de 10 linhas do tópico 2".\n\nMantenha cada objetivo em uma conversa separada: o histórico fica salvo e você retoma o contexto quando quiser.',
+    body: 'A 22M AI funciona melhor quando você dá contexto. Em vez de perguntar "me ajude a estudar", descreva objetivo, tempo disponível e nível atual.\n\nModelo de pedido:\n"Quero aprender [tema] em [prazo]. Tenho [X horas] por semana e nível [iniciante/intermediário]. Monte um plano semanal com entregas e formas de revisão."\n\nDepois peça ajustes: "reduza para 3 dias por semana", "adicione exercícios práticos", "crie um resumo de 10 linhas do tópico 2".\n\nMantenha cada objetivo em uma conversa separada: o histórico fica salvo e você retoma o contexto quando quiser.',
   },
   {
     title: 'Checklist de segurança digital para membros',
@@ -350,7 +350,7 @@ const SEED_POSTS = [
     category: 'tutoriais',
     featured: 1,
     description: 'Sete verificações rápidas para proteger suas contas e seus dados pessoais.',
-    body: 'Segurança é hábito. Revise esta lista a cada trimestre:\n\n1. Senhas únicas por serviço, com no mínimo 12 caracteres.\n2. Gerenciador de senhas em vez de anotações.\n3. Verificação em duas etapas nas contas principais.\n4. Nunca compartilhe códigos de verificação.\n5. Confira o domínio antes de digitar credenciais.\n6. Mantenha navegador e sistema atualizados.\n7. Desconfie de ofertas que pedem pressa.\n\nA NEXUS nunca solicita sua senha por chat, e-mail ou redes sociais.',
+    body: 'Segurança é hábito. Revise esta lista a cada trimestre:\n\n1. Senhas únicas por serviço, com no mínimo 12 caracteres.\n2. Gerenciador de senhas em vez de anotações.\n3. Verificação em duas etapas nas contas principais.\n4. Nunca compartilhe códigos de verificação.\n5. Confira o domínio antes de digitar credenciais.\n6. Mantenha navegador e sistema atualizados.\n7. Desconfie de ofertas que pedem pressa.\n\nA 22M nunca solicita sua senha por chat, e-mail ou redes sociais.',
   },
   {
     title: 'Ferramentas de produtividade que realmente economizam tempo',
@@ -437,20 +437,20 @@ const SEED_POSTS = [
     body: 'Automatize o repetitivo, nunca o sensível.\n\nSeguro: preencher formulários internos, organizar abas, extrair dados de páginas públicas, gerar relatórios.\nEvite: armazenar senhas em scripts, contornar autenticação, raspar dados privados, burlar limites de serviços.\n\nRegras: escopo mínimo de permissões, execução revisada, nenhum token em código compartilhado.',
   },
   {
-    title: 'NEXUS Community: regras de convivência',
-    slug: 'nexus-community-regras',
+    title: '22M Community: regras de convivência',
+    slug: '22m-community-regras',
     category: 'outros',
     featured: 1,
     description: 'O que esperamos de cada membro dentro do chat público da plataforma.',
-    body: 'A NEXUS Community existe para troca real de conhecimento.\n\nPermitido: dúvidas, ajuda mútua, feedback respeitoso, divulgação de projetos próprios em contexto.\nProibido: spam, ofensas, discurso de ódio, conteúdo ilegal, links maliciosos, divulgação de dados pessoais de terceiros e tentativas de se passar por outra pessoa.\n\nModeração: mensagens podem ser removidas, contas silenciadas temporariamente ou suspensas. Todas as ações ficam registradas.\n\nDenuncie mensagens abusivas pelo botão de denúncia — a equipe analisa e responde pelo painel de moderação.',
+    body: 'A 22M Community existe para troca real de conhecimento.\n\nPermitido: dúvidas, ajuda mútua, feedback respeitoso, divulgação de projetos próprios em contexto.\nProibido: spam, ofensas, discurso de ódio, conteúdo ilegal, links maliciosos, divulgação de dados pessoais de terceiros e tentativas de se passar por outra pessoa.\n\nModeração: mensagens podem ser removidas, contas silenciadas temporariamente ou suspensas. Todas as ações ficam registradas.\n\nDenuncie mensagens abusivas pelo botão de denúncia — a equipe analisa e responde pelo painel de moderação.',
   },
   {
-    title: 'Como a NEXUS AI pensa e como usá-la melhor',
-    slug: 'como-usar-a-nexus-ai',
+    title: 'Como a 22M AI pensa e como usá-la melhor',
+    slug: 'como-usar-a-22m-ai',
     category: 'outros',
     featured: 1,
     description: 'Entenda limites, contexto e as melhores formas de pedir ajuda à inteligência da plataforma.',
-    body: 'A NEXUS AI é a assistente oficial da plataforma. Ela conversa em português, mantém o contexto da conversa e ajuda com dúvidas sobre a NEXUS, conteúdo, textos, ideias e explicações técnicas.\n\nComo obter respostas melhores:\n1. Informe objetivo e contexto.\n2. Peça formato de saída (lista, tabela, resumo, passo a passo).\n3. Itere: peça ajustes em vez de recomeçar.\n4. Separe assuntos em conversas diferentes.\n\nLimites: a IA não acessa dados privados de terceiros, não fornece credenciais e não substitui aconselhamento profissional. Cada conta tem um limite diário de mensagens para manter o serviço disponível para todos.',
+    body: 'A 22M AI é a assistente oficial da plataforma. Ela conversa em português, mantém o contexto da conversa e ajuda com dúvidas sobre a 22M, conteúdo, textos, ideias e explicações técnicas.\n\nComo obter respostas melhores:\n1. Informe objetivo e contexto.\n2. Peça formato de saída (lista, tabela, resumo, passo a passo).\n3. Itere: peça ajustes em vez de recomeçar.\n4. Separe assuntos em conversas diferentes.\n\nLimites: a IA não acessa dados privados de terceiros, não fornece credenciais e não substitui aconselhamento profissional. Cada conta tem um limite diário de mensagens para manter o serviço disponível para todos.',
   },
 ];
 
@@ -484,8 +484,8 @@ if (!get('SELECT id FROM announcements LIMIT 1')) {
   run(
     'INSERT INTO announcements (title, body, level, active, author_id, created_at, updated_at) VALUES (?, ?, ?, 1, NULL, ?, ?)',
     [
-      'Bem-vindo à NEXUS VAZAMENTOS',
-      'A plataforma está no ar. Explore a biblioteca, converse com a NEXUS AI e participe da NEXUS Community. Leia as regras de convivência antes de enviar sua primeira mensagem.',
+      'Bem-vindo à 22m Vazamentos',
+      'A plataforma está no ar. Explore a biblioteca, converse com a 22M AI e participe da 22M Community. Leia as regras de convivência antes de enviar sua primeira mensagem.',
       'info',
       created,
       created,
@@ -495,7 +495,7 @@ if (!get('SELECT id FROM announcements LIMIT 1')) {
     'INSERT INTO announcements (title, body, level, active, author_id, created_at, updated_at) VALUES (?, ?, ?, 1, NULL, ?, ?)',
     [
       'Conteúdo autorizado apenas',
-      'A NEXUS publica somente materiais próprios, autorizados ou de domínio público. Não divulgamos dados pessoais, credenciais ou arquivos privados de terceiros.',
+      'A 22M publica somente materiais próprios, autorizados ou de domínio público. Não divulgamos dados pessoais, credenciais ou arquivos privados de terceiros.',
       'warning',
       created,
       created,

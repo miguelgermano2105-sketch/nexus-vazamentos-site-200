@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXUS VAZAMENTOS — BLACK & WHITE PREMIUM
+   22m Vazamentos — BLACK & WHITE PREMIUM
    DESENVOLVIDO POR SILVA
    ========================================================= */
 
@@ -963,7 +963,7 @@ html.reduce-motion .hero-orb, html.reduce-motion .hero-ring { animation: none !i
 .chip:hover { color: #fff; border-color: var(--line-strong); }
 .chip.active { background: #fff; color: #060608; border-color: #fff; font-weight: 600; }
 
-/* ============================ NEXUS AI — interface ============================ */
+/* ============================ 22M AI — interface ============================ */
 
 .ai-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 18px; align-items: start; }
 .ai-sidebar { padding: 14px; border-radius: var(--radius); display: grid; gap: 10px; position: sticky; top: 88px; max-height: calc(100vh - 120px); overflow-y: auto; }
@@ -1010,7 +1010,7 @@ html.reduce-motion .hero-orb, html.reduce-motion .hero-ring { animation: none !i
 }
 
 /* =========================================================
-   NEXUS AI — BOLINHA FLUTUANTE
+   22M AI — BOLINHA FLUTUANTE
    ========================================================= */
 .ai-fab-root {
   position: fixed;

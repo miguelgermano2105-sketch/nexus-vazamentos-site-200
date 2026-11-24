@@ -56,7 +56,7 @@ export default function Admin() {
         <div className="section-head">
           <div>
             <div className="eyebrow"><span className="dot" /> Painel administrativo</div>
-            <h1 className="section-title">Central NEXUS</h1>
+            <h1 className="section-title">Central 22M</h1>
             <p className="section-desc">
               Olá, {user?.displayName}. Gerencie usuários, conteúdos, avisos e a comunidade.
               {!isAdmin ? ' Seu acesso é de moderador.' : ''}
@@ -1176,9 +1176,9 @@ const SETTING_FIELDS: { key: string; label: string; type: 'text' | 'textarea' | 
   { key: 'site_description', label: 'Descrição', type: 'textarea' },
   { key: 'logo_text', label: 'Texto do logotipo', type: 'text' },
   { key: 'discord_url', label: 'Convite do Discord', type: 'text' },
-  { key: 'ai_model', label: 'Modelo da NEXUS AI', type: 'text' },
+  { key: 'ai_model', label: 'Modelo da 22M AI', type: 'text' },
   { key: 'ai_daily_limit', label: 'Limite diário de mensagens por membro', type: 'number' },
-  { key: 'ai_system_prompt', label: 'Personalidade da NEXUS AI', type: 'textarea' },
+  { key: 'ai_system_prompt', label: 'Personalidade da 22M AI', type: 'textarea' },
   { key: 'effects_default', label: 'Efeitos padrão', type: 'text' },
 ];
 
@@ -1247,7 +1247,7 @@ function SettingsTab({ isAdmin }: { isAdmin: boolean }) {
       <div className="glass-panel" style={{ padding: 18 }}>
         <div className="row between" style={{ flexWrap: 'wrap', gap: 10 }}>
           <div>
-            <strong className="small">NEXUS AI</strong>
+            <strong className="small">22M AI</strong>
             <p className="tiny text-muted">
               {aiConfigured
                 ? 'Provedor de IA configurado via variável de ambiente.'
@@ -1304,7 +1304,7 @@ function SettingsTab({ isAdmin }: { isAdmin: boolean }) {
               checked={values.ai_enabled === '1'}
               onChange={(e) => setValues({ ...values, ai_enabled: e.target.checked ? '1' : '0' })}
             />
-            <span className="small">NEXUS AI ativa</span>
+            <span className="small">22M AI ativa</span>
           </label>
         </div>
 

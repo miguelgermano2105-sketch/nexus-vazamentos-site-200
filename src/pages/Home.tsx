@@ -32,7 +32,7 @@ export default function Home() {
           <div className="hero-ring r2" aria-hidden />
           <span className="hero-badge">Plataforma digital premium</span>
           <h1 className="hero-title">
-            NEXUS <span className="text-dim">VAZAMENTOS</span>
+            22M <span className="text-dim">VAZAMENTOS</span>
           </h1>
           <p className="hero-sub">
             Conteúdos selecionados, comunidade em tempo real e inteligência artificial própria em uma única
@@ -162,18 +162,18 @@ export default function Home() {
           <div className="dash-grid">
             <div className="glass-panel card-pad">
               <div className="eyebrow"><span className="dot" /> Inteligência artificial</div>
-              <h3 className="section-title" style={{ fontSize: 26 }}>NEXUS AI</h3>
+              <h3 className="section-title" style={{ fontSize: 26 }}>22M AI</h3>
               <p className="text-muted small" style={{ marginTop: 10 }}>
                 Uma assistente treinada para conhecer a plataforma: encontra conteúdos, explica tutoriais, gera
                 ideias e organiza textos. Conversas salvas para membros autenticados.
               </p>
               <div className="hero-actions" style={{ marginTop: 20 }}>
-                <Link to="/nexus-ai" className="btn btn-primary">Conversar com a NEXUS AI</Link>
+                <Link to="/ia" className="btn btn-primary">Conversar com a 22M AI</Link>
               </div>
             </div>
             <div className="glass-panel card-pad">
               <div className="eyebrow"><span className="dot" /> Tempo real</div>
-              <h3 className="section-title" style={{ fontSize: 26 }}>NEXUS Community</h3>
+              <h3 className="section-title" style={{ fontSize: 26 }}>22M Community</h3>
               <p className="text-muted small" style={{ marginTop: 10 }}>
                 Chat público integrado, com membros online, respostas, emojis e moderação ativa. Entre na
                 comunidade e converse com outros membros em tempo real.
